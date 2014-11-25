@@ -13,19 +13,22 @@ class File
       {
             $file_type_array = explode(".", $file_name);
             
+            // Парсим содержимое файла
+            $obj = Factory::CreateParse();
+            
             if($file_type_array[1] == 'ini') {
                   $this->file_type = file_get_contents($file_name);
-                  return $this->file_type;                        
+                  // Парсим содержимое файла
+                  $this->file_parse = $obj->parseIni($this->file_type)
+                  return $this->file_parse;
             } elseif ($file_type_array[1] == 'json') {
                   $this->file_type = file_get_contents($file_name);
-                  return $this->file_type;
+                  // Парсим содержимое файла
+                  $this->file_parse = $obj->parseJson($this->file_type)
+                  return $this->file_parse;
             } else {
                   throw new Exception('Передан файл неверного формата! Пожалуста повторите попытку снова.');
             }
-            
-            // Парсим содержимое файла
-            $obj = Factory::CreateParse();
-            $this->file_parse = $obj
       }
 }
 
