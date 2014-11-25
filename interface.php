@@ -1,6 +1,7 @@
 <?php
+
 // Объявим интерфейс 'iHandler'
-interface iHandler
+interface IHandler
 {
     //Парсим файлы с расширением *.ini
     public function parseIni();
@@ -8,4 +9,5 @@ interface iHandler
     //Парсим файлы с расширением *.json
     public function parseJson();
 }
+
 ?>
