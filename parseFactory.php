@@ -2,7 +2,7 @@
 
 class parseFactory
 {
-  public static function Create()
+    public static function Create()
   {
      return new Article( $id );
   }
