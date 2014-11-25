@@ -4,15 +4,15 @@ class Singleton
     private $db;
     
     private function __clone() {}
-    private function __construct($db_name, $host = 'localhost', $user = 'root', $password= '') 
+    private function __construct($db_name = 'consolephp', $host = 'localhost', $user = 'root', $password= '') 
     {
         $this->db = new mysqli($host, $user, $password, $db_name);
     }
    
-    public static function getInstance($db_name)
+    public static function getInstance()
     {
         if (null === self::$instance) {
-            self::$instance = new self($db_name);
+            self::$instance = new self();
         }
         return self::$instance;
     }
