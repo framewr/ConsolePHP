@@ -1,13 +1,17 @@
 <?php
 
+//Подключаем 
+require_once('parse.php');
+
 class parseFactory
 {
     public static function Create()
-  {
-     return new Article( $id );
-  }
+    {
+        return new Parse();
+    }
 }
-$ao = ArticleFactory::Create( 1 );
+
+$ao = parseFactory::Create();
 echo( $ao->getTitle()."\n" );
 
 ?>
