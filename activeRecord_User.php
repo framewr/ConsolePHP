@@ -1,6 +1,6 @@
 <?php
 require_once 'singleton.php';
-class Orm
+class OrmActiveRecord
 {
     public static $mysqli;
     //название таблицы для выполнения запроса
