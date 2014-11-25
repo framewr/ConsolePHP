@@ -1,5 +1,4 @@
 <?php
-
 // Объявим интерфейс 'iHandler'
 interface iHandler
 {
