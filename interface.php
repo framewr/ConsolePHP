@@ -2,9 +2,10 @@
 // Объявим интерфейс 'iHandler'
 interface iHandler
 {
-    public function setVariable($name, $var);
-    public function getHtml($template);
+    //Парсим файлы с расширением *.ini
+    public function parseIni();
+    
+    //Парсим файлы с расширением *.json
+    public function parseJson();
 }
-
-
 ?>
