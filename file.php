@@ -15,6 +15,8 @@ class File
             } elseif ($file_type_array[1] == 'json') {
                   $this->fileJson = file_get_contents($file_name);
                   return $this->fileJson;
+            } else {
+                  throw new Exception('Передан файл неверного формата! Пожалуста повторите попытку снова.');
             }                        
       }
 }
