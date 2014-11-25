@@ -8,19 +8,18 @@ require_once('Zend_Config_Ini.php');
 
 class Parse implements IHandler
 {
-    public $parseJson;
-    public $parseIni;
+    public $parse_string;
     
     public function parseIni($fileIni)
     {
-        $this->parseIni = new Zend_Config_Ini($parseIni, 'staging');
-        return $this->parseIni;
+        $this->parse_string = new Zend_Config_Ini($parseIni, 'staging');
+        return $this->parse_string;
     }
     
     public function parseJson($fileJson)
     {
-        $this->parseJson = json_decode($fileJson);
-        return $this->parseJson;
+        $this->parse_string = json_decode($fileJson);
+        return $this->parse_string;
     }
 }
 
