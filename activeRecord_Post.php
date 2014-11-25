@@ -31,54 +31,40 @@ class OrmActiveRecord_Post
         }
     }
     
-    // Сохраняем данные в бд
-    public function save()
+    public static function save()
     {
-        self::$mysqli = Singleton::getInstance();
-        $result = self::$mysqli->query($this->insert());
-        if ($result == false) {
-            die(self::$mysqli->error);
-        }
-        Singleton::close_connection();
-        return $result;
-    }
-    
-    public function insert()
-    {
-        $fields='';
-        $values='';
-    
-        // формируем строку запроса
-        $i = 1;
-        foreach($this->attributes as $key=>$value) {
-            $fields.=$key;     
-            $values.=':'.$key;
-            if($i$this->attributes)) {
-                $fields.=', ';
-                $values.=', ';
+    /*Если запись новая, то ей еще не присвоен id. Это означает, что мы ее «вставляем» в таблицу,
+    а иначе обновляем данные
+    в уже существующей записи */
+        if($this->id == '') {
+            $fields='';
+            $values='';
+            // формируем строку запроса
+            // из списка полей таблицы
+            $i = 1;
+            foreach($this->attributes as $key=>$value) {
+                $fields.=$key;     
+                $values.=':'.$key;
+                if($i$this->attributes)) {
+                    $fields.=', ';
+                    $values.=', ';
+                }
+                $i++;
             }
-            $i++;
+            $query='INSERT INTO '. $this->table .' ('.$fields.') VALUES ('.$values.')';
+            $sth = $this->pdo->prepare($query);
+            $sth->execute($this->attributes);
+        } else {
+            
         }
-        $query='INSERT INTO '.$this->table .' ('.$fields.') VALUES ('.$values.')';
+
     }
     
-    //Делаем выборку данных с бд
-    public function select()
-    {
-        $this->mysqli = Singleton::getInstance();
-        $table = self::$tableName;
-        $sql = "SELECT * FROM ".$table;
-        $result = self::$mysqli->query($sql);
-        
-        if ($result == false) {
-            die(self::$mysqli->error);
-        }
-        Singleton::close_connection();
-        $result_comments = array();
-      
-        while($obj = $result->fetch()) { 
-            $result_comments[]=$obj;
-        }
-        return $result_comments;
-    }
+    
+    
+    
+    
+    
+    
+    
 }
