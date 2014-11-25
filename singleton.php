@@ -9,10 +9,10 @@ class Singleton
         $this->db = new mysqli($host, $user, $password, $db_name);
     }
    
-    public static function getInstance()
+    public static function getInstance($db_name)
     {
         if (null === self::$instance) {
-            self::$instance = new self();
+            self::$instance = new self($db_name);
         }
         return self::$instance;
     }
