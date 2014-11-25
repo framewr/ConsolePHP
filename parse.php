@@ -1,7 +1,7 @@
 <?php
 
 //Подключаем файл интерфейсов
-require_once('interface.php');
+require_once('IHandler.php');
 
 //Подключаем инструмент Zend для парсинга *ini
 require_once('Zend_Config_Ini.php');
