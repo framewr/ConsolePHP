@@ -63,11 +63,11 @@ class OrmActiveRecord_User
     }
     
     //Делаем выборку данных с бд
-    public function select()
+    public static function find($id)
     {
         $this->mysqli = Singleton::getInstance();
         $table = self::$tableName;
-        $sql = "SELECT * FROM ".$table;
+        $sql = "SELECT * FROM " . $table . "WHERE 'id' = " . $id;
         $result = self::$mysqli->query($sql);
         
         if ($result == false) {
