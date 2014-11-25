@@ -12,15 +12,4 @@ class Parse implements IHandler
     }
 }
 
-
-class ArticleFactory
-{
-  public static function Create( $id )
-  {
-     return new Article( $id );
-  }
-}
-$ao = ArticleFactory::Create( 1 );
-echo( $ao->getTitle()."\n" );
-
 ?>
