@@ -4,7 +4,7 @@ class Singleton
     private $db;
     
     private function __clone() {}
-    private function __construct($db_name = 'comments', $host = 'localhost', $user = 'root', $password= '') 
+    private function __construct($db_name, $host = 'localhost', $user = 'root', $password= '') 
     {
         $this->db = new mysqli($host, $user, $password, $db_name);
     }
