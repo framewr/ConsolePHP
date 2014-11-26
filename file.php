@@ -27,7 +27,7 @@ class File
                   $this->file_parse = $obj->parseJson($this->file_type)
                   return $this->file_parse;
             } else {
-                  throw new Exception('Передан файл неверного формата! Пожалуста повторите попытку снова.');
+                  throw new Exception('Передан файл неверного формата! Пожалуйста повторите попытку снова.');
             }
       }
 }
