@@ -8,10 +8,10 @@ class OrmActiveRecord_Post
     protected static $tableName = '';
     
     //массив с полями таблицы и их значениями
-    public $attributes = array();
+    public static $attributes = array();
     
     //список полей таблицы
-    public $fieldsList = array();
+    public static $fieldsList = array();
     
     public function __set($name, $value)
     {
@@ -42,10 +42,10 @@ class OrmActiveRecord_Post
             // формируем строку запроса
             // из списка полей таблицы
             $i = 1;
-            foreach($this->attributes as $key=>$value) {
+            foreach(self::attributes as $key=>$value) {
                 $fields.=$key;     
                 $values.=':'.$key;
-                if($i$this->attributes)) {
+                if(self::attributes)) {
                     $fields.=', ';
                     $values.=', ';
                 }
@@ -55,9 +55,18 @@ class OrmActiveRecord_Post
             $sth = $this->pdo->prepare($query);
             $sth->execute($this->attributes);
         } else {
+            $fields='';
+            $i = 1;
+            foreach($this->attributes as $key=>$value) {
+                if($key!='id')$fields.=$key.'=:'.$key;        
+                if($i$this->attributes) && $key!='id') {
+                    $fields.=', ';
+                }
+            $i++;
+            }
             
+            $query='UPDATE '.$this->table . ' SET '.$fields.' WHERE id=:id';
         }
-
     }
     
     //Делаем выборку данных с бд
