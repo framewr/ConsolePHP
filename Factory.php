@@ -3,6 +3,7 @@
 //Подключаем классы для factory
 require_once('parse.php');
 require_once('file.php');
+require_once('modelOrm.php');
 
 class Factory
 {
@@ -14,6 +15,11 @@ class Factory
     public static function CreateFile($file_name)
     {
         return new File($file_name);
+    }
+    
+    public static function CreateModelActiveRecord($file_name)
+    {
+        return new modelOrm();
     }
 }
 
