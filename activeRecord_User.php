@@ -82,3 +82,4 @@ class OrmActiveRecord_User
         return $result_comments;
     }
 }
+?>
