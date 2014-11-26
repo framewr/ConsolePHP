@@ -17,7 +17,7 @@ class Factory
         return new File($file_name);
     }
     
-    public static function CreateModelActiveRecord($file_name)
+    public static function CreateModelActiveRecord()
     {
         return new modelOrm();
     }
