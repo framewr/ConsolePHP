@@ -9,14 +9,11 @@ class File
       public $file_type;
       public $file_parse;
       
-      public function __construct($file_name)
+      public function __construct($file_name, $file_type)
       {
-            //Разбиваем файл для получения его типа формата
-            $file_type_array = explode(".", $file_name);
-            
             // Парсим содержимое файла
             $obj = Factory::CreateParse();
-            $this->file_parse = $obj->parseFile($file_name, $file_type_array[1])
+            $this->file_parse = $obj->parseFile($file_name, $file_type)
             return $this->file_parse;
       }
 }
