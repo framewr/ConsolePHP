@@ -9,6 +9,7 @@ require_once('Zend_Config_Ini.php');
 class Parse implements IHandler
 {
     public $parse_string;
+    public $fileGetContent;
     
     public function parseIni($fileIni)
     {
@@ -20,6 +21,12 @@ class Parse implements IHandler
     {
         $this->parse_string = json_decode($fileJson);
         return $this->parse_string;
+    }
+    
+    public function fileGetContents($parse_string)
+    {
+        $this->fileGetContent = file_get_contents($parse_string);
+        return $this->fileGetContent;
     }
 }
 
