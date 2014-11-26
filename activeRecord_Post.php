@@ -79,12 +79,6 @@ class OrmActiveRecord_Post
         }
         return $result_comments;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
+
+?>
