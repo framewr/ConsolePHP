@@ -8,10 +8,10 @@ class OrmActiveRecord
     protected static $tableName = '';
     
     //массив с полями таблицы и их значениями
-    public static $attributes = array();
+    public $attributes = array();
     
     //список полей таблицы
-    public static $fieldsList = array();
+    public $fieldsList = array();
     
     public function __set($name, $value)
     {
@@ -31,29 +31,28 @@ class OrmActiveRecord
         }
     }
     
-    public static function save()
+    public function save()
     {
-    /*Если запись новая, то ей еще не присвоен id. Это означает, что мы ее «вставляем» в таблицу,
-    а иначе обновляем данные
-    в уже существующей записи */
+        /*Если запись новая, то ей еще не присвоен id. Это означает, что мы ее «вставляем» в таблицу,
+        а иначе обновляем данные
+        в уже существующей записи */
         if($this->id == '') {
             $fields='';
             $values='';
             // формируем строку запроса
             // из списка полей таблицы
             $i = 1;
-            foreach(self::attributes as $key=>$value) {
+            foreach($this->attributes as $key=>$value) {
                 $fields.=$key;     
                 $values.=':'.$key;
-                if(self::attributes)) {
+                if($this->attributes)) {
                     $fields.=', ';
                     $values.=', ';
                 }
                 $i++;
             }
             $query='INSERT INTO '. $this->table .' ('.$fields.') VALUES ('.$values.')';
-            $sth = $this->pdo->prepare($query);
-            $sth->execute($this->attributes);
+            self::query($query);
         } else {
             $fields='';
             $i = 1;
@@ -64,9 +63,24 @@ class OrmActiveRecord
                 }
             $i++;
             }
-            
             $query='UPDATE '.$this->table . ' SET '.$fields.' WHERE id=:id';
+            self::query($query);
         }
+    }
+    
+    //Выполняем запрос к бд
+    public static function query($query)
+    {
+        //Подключаемся к бд
+        self::$mysqli = Singleton::getInstance();
+        //Выполняем запрос
+        $result = self::$mysqli->query($query);
+        if ($result == false) {
+            die(self::$mysqli->error);
+        }
+        //Закрываем соединение с бд
+        Singleton::close_connection();
+        return $result;    
     }
     
     //Делаем выборку данных с бд
