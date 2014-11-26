@@ -3,6 +3,9 @@
 //Подключаем Factory
 require_once('Factory.php');
 
+//Подключаем ActiveRecord
+require_once('activeRecord.php');
+
 // Проверяем, правильно ли передано название файла
 if ($argc != 2 || !is_array($argv[1])) {
       echo "The incorrect path to the file!";
