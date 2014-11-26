@@ -11,24 +11,13 @@ class File
       
       public function __construct($file_name)
       {
+            //Разбиваем файл для получения его типа формата
             $file_type_array = explode(".", $file_name);
             
             // Парсим содержимое файла
             $obj = Factory::CreateParse();
-            
-            if($file_type_array[1] == 'ini') {
-                  $this->file_type = file_get_contents($file_name);
-                  // Парсим содержимое файла
-                  $this->file_parse = $obj->parseIni($this->file_type)
-                  return $this->file_parse;
-            } elseif ($file_type_array[1] == 'json') {
-                  $this->file_type = file_get_contents($file_name);
-                  // Парсим содержимое файла
-                  $this->file_parse = $obj->parseJson($this->file_type)
-                  return $this->file_parse;
-            } else {
-                  throw new Exception('Передан файл неверного формата! Пожалуйста повторите попытку снова.');
-            } 
+            $this->file_parse = $obj->parseFile($file_name, $file_type_array[1])
+            return $this->file_parse;
       }
 }
 
