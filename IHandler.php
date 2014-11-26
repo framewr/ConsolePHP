@@ -8,6 +8,9 @@ interface IHandler
     
     //Парсим файлы с расширением *.json
     public function parseJson();
+    
+    //Получаем содержимое передаваемого файла
+    public function fileGetContents();
 }
 
 ?>
