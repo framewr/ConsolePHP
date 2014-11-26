@@ -28,7 +28,7 @@ class File
                   return $this->file_parse;
             } else {
                   throw new Exception('Передан файл неверного формата! Пожалуйста повторите попытку снова.');
-            }
+            } 
       }
 }
 
