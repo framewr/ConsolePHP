@@ -11,7 +11,7 @@ class Parse implements IHandler
     public $file_parse;
     public $fileGetContent;
     
-    public function parseIni($parse_string, $format_file)
+    public function parseFile($parse_string, $format_file)
     {
         //Получаем содержимое передаваемого файла
         $this->fileGetContent = file_get_contents($parse_string);
