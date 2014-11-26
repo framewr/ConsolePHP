@@ -8,25 +8,24 @@ require_once('Zend_Config_Ini.php');
 
 class Parse implements IHandler
 {
-    public $parse_string;
+    public $file_parse;
     public $fileGetContent;
     
-    public function parseIni($fileIni)
+    public function parseIni($parse_string, $format_file)
     {
-        $this->parse_string = new Zend_Config_Ini($parseIni, 'staging');
-        return $this->parse_string;
-    }
-    
-    public function parseJson($fileJson)
-    {
-        $this->parse_string = json_decode($fileJson);
-        return $this->parse_string;
-    }
-    
-    public function fileGetContents($parse_string)
-    {
+        //Получаем содержимое передаваемого файла
         $this->fileGetContent = file_get_contents($parse_string);
-        return $this->fileGetContent;
+        
+        //Парсим содержимое файла в зависимости от формата *.ini или *.json
+        if($format_file == 'ini') {
+            $this->file_parse = new Zend_Config_Ini($this->fileGetContent, 'staging');
+            return $this->file_parse;
+        } elseif ($format_file == 'json') {
+            $this->file_parse = json_decode($this->fileGetContent);
+            return $this->file_parse;
+        } else {
+            throw new Exception('Передан файл неверного формата! Пожалуйста повторите попытку снова.');
+        }
     }
 }
 
