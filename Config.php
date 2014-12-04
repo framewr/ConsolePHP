@@ -73,7 +73,7 @@ class Zend_Config implements Countable, Iterator
      */
     protected $_extends = array();
     /**
-     * Load file error string.
+     * Load file error string. 
      *
      * Is null if there was no error while file loading
      *
