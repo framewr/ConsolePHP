@@ -32,7 +32,7 @@ class Zend_Config_Ini extends Zend_Config
 {
     /**
      * String that separates nesting levels of configuration data identifiers
-     *
+     * 
      * @var string
      */
     protected $_nestSeparator = '.';
