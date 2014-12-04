@@ -7,7 +7,7 @@ class modelOrm extends  OrmActiveRecord
 {
     protected $table = '';
     protected static $tableName = '';
-    public $fieldsList = array('id', 'title', ‘date’, ‘content’);
+    public $fieldsList = array();
     
     public function __construct($table, $array)
     {
