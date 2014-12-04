@@ -12,16 +12,10 @@ class Factory
         return new Parse();
     }
     
-    public static function CreateFile($file_name)
-    {
-        return new File($file_name);
-    }
-    
     public static function CreateModelActiveRecord($table, $array)
     {
         return new modelOrm($table, $array);
     }
 }
-
 
 ?> 
