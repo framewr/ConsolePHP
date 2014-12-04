@@ -8,8 +8,17 @@ require_once('Zend_Config_Ini.php');
 
 class Parse implements IHandler
 {
+    public $file_type;
+    public $file_parse;
     public $file_parse;
     public $fileGetContent;
+    
+    public function __construct($file_name, $file_type)
+    {
+        // Парсим содержимое файла
+        $this->file_parse = $this->parseFile($file_name, $file_type)
+        return $this->file_parse;
+    }
     
     public function parseFile($parse_string, $format_file)
     {
