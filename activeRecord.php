@@ -86,15 +86,9 @@ class OrmActiveRecord
     //Делаем выборку данных с бд
     public static function find($id)
     {
-        $this->mysqli = Singleton::getInstance();
         $table = self::$tableName;
         $sql = "SELECT * FROM " . $table . "WHERE 'id' = " . $id;
-        $result = self::$mysqli->query($sql);
-        
-        if ($result == false) {
-            die(self::$mysqli->error);
-        }
-        Singleton::close_connection();
+        $result = self::query($sql);
         $result_comments = array();
       
         while($obj = $result->fetch()) { 
