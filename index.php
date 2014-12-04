@@ -12,7 +12,7 @@ if ($argc != 2 || !is_array($argv[1])) {
 } else {
       //Разбиваем файл для получения его типа формата
       $file_type_array = explode(".", $argv[1]);
-      $file_parse_array = Factory::CreateFile($argv[1], $file_type_array[1]);
+      $file_parse_array = Factory::CreateParse($argv[1], $file_type_array[1]);
       
       if($file_type_array[0] =='post') {
             $save = Factory::CreateModelActiveRecord('post', $file_parse_array)
