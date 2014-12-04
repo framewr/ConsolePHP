@@ -19,7 +19,7 @@ if ($argc != 2 || !is_array($argv[1])) {
       } elseif($file_type_array[0] =='user') {
             $save = Factory::CreateModelActiveRecord('user', $file_parse_array)
       } else {
-            throw new Exception('Передан файл должен иметь имя 'post' или 'user'!);
+            throw new Exception('Переданный файл должен иметь имя 'post' или 'user'!);
       }
       
       //ПРоверяем существует ли запись в бд с id и сохраняем данные в бд (insert или update)
