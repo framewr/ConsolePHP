@@ -11,7 +11,7 @@ class modelOrm extends  OrmActiveRecord
     
     public function __construct($table, $array)
     {
-        self::table = '$table';
+        self::table = '$table'; 
         $this->fieldsList = $array;
     }
 }
